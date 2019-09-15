@@ -1,7 +1,11 @@
-package com.jh.uniteticketwriter
+package com.jh.uniteticketwriter.nfc
 
 import android.nfc.NdefMessage
 import android.nfc.Tag
+import com.jh.uniteticketwriter.Config
+import com.jh.uniteticketwriter.NfcCustomMessage
+import com.jh.uniteticketwriter.NfcTextMessage
+import com.jh.uniteticketwriter.exceptions.NotEnoughSpaceException
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -25,7 +29,7 @@ class MikronCardManager {
 
     private var mfc: MikronCard? = null
     private fun getBitValue(byte: Byte, num: Int): Boolean {
-        val m = (byte.toInt() shr  num).toByte() and 1
+        val m = (byte.toInt() shr num).toByte() and 1
         return m == 1.toByte()
     }
 
@@ -72,23 +76,62 @@ class MikronCardManager {
 
     fun connect(tag: Tag) {
         mfc = MikronCard(tag)
+        Config.currentCard = mfc
         mfc?.connect()
         updateLockInformation()
     }
 
+    private fun getFirstWritableSection() = if (!isPageLocked(startSection)) startSection else {
+        var n = startSection
+        while (n in lockedPages) {
+            n++
+        }
+        n
+    }
 
-    fun writeNdef(messageNdef: NdefMessage) {
-        val messageBytes = messageNdef.toByteArray()
+
+    fun writeNdef(messageNdef: NfcCustomMessage<*>) {
+        val baos = ByteArrayOutputStream()
+        var messageBytes = messageNdef.toByteArray()
+        baos.write(messageBytes.size)
+        baos.write(messageBytes)
+        messageBytes = baos.toByteArray()
         val sectionBuffer = ByteArray(sectionSize)
         if (messageBytes.size > availableSizeBytes)
             throw NotEnoughSpaceException()
         val bytesStream = ByteArrayInputStream(messageBytes)
-        var currentSection = min(startSection, lockedPages.min() ?: startSection)
+        var currentSection = getFirstWritableSection()
         while (bytesStream.available() > 0) {
-            val readSize = bytesStream.read(sectionBuffer)
-            mfc?.writePage(currentSection.toByte(), sectionBuffer.copyOfRange(0, readSize))
+            if (currentSection !in lockedPages) {
+                val readSize = bytesStream.read(sectionBuffer)
+                mfc?.writePage(currentSection.toByte(), sectionBuffer.copyOfRange(0, readSize))
+            }
             currentSection++
         }
+    }
+
+    fun readNdef(): NfcCustomMessage<*> {
+        val baos = ByteArrayOutputStream()
+        val firstSection = getFirstWritableSection()
+        var ndefSize = 0
+        for (i in firstSection..stopSection) {
+            if (i !in lockedPages) {
+                val page = mfc?.readPages(i.toByte()) ?: throw IOException()
+                if (i == firstSection) {
+                    ndefSize = page[0].toInt()
+                    baos.write(page.copyOfRange(1, 4))
+                } else {
+
+                    baos.write(page.copyOfRange(0, min(ndefSize - baos.size(), page.size)))
+                }
+            }
+            if (baos.size() == ndefSize)
+                break
+        }
+        val txtMess = NfcTextMessage()
+        txtMess.parse(baos.toByteArray())
+        baos.close()
+        return txtMess
     }
 
     fun readAllRaw(): ByteArray {

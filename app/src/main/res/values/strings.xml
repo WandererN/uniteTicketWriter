@@ -8,6 +8,9 @@
     <string name="contact_information_caption">Contact information</string>
     <string name="bt_device_info_caption">BT device info</string>
     <string name="write_tag_caption">Write TAG</string>
-    <string name="reading_tag_caption">Reading TAG…</string>
+    <string name="reading_tag_caption">TAG Read!</string>
     <string name="about_united_ticket_writer_header">About…  \nUnite Ticket Writer</string>
+    <string name="write_text">Write text</string>
+    <string name="enter_text">Enter text</string>
+    <string name="enter_text_field">Enter text field</string>
 </resources>

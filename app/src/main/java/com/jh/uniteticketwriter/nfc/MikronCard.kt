@@ -1,11 +1,11 @@
-package com.jh.uniteticketwriter
+package com.jh.uniteticketwriter.nfc
 
 import android.nfc.Tag
 import android.nfc.tech.NfcA
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
-class MikronCard(val tag: Tag) {
+class MikronCard(tag: Tag) {
     private val READ_CMD = (0x30 and 0xFF).toByte()
     private val WRITE_CMD = (0xA2 and 0xFF).toByte()
     private val START_SECTION = 4
@@ -24,14 +24,22 @@ class MikronCard(val tag: Tag) {
 
     fun writePage(section: Byte, payload: ByteArray): Boolean {
         val baos = ByteArrayOutputStream()
+        val buf = ByteArray(4)
         baos.apply {
             write(WRITE_CMD.toInt())
             write(section.toInt())
-            write(payload.copyOfRange(0, 4))
+            buf.fill(0)
+            payload.copyInto(buf)
+            write(buf)
         }
         val message = baos.toByteArray()
+        try {
+            manager?.transceive(message)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return false
+        }
         baos.close()
-        manager?.transceive(message)
         return true//TODO handle ack
     }
 

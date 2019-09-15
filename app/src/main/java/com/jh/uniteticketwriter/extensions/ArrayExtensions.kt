@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter
+package com.jh.uniteticketwriter.extensions
 
 fun <T> Array<T>.toHexString(bytesInLine: Int = -1): String {
     val builder = StringBuilder()

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.jh.uniteticketwriter">
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+            android:name="android.hardware.nfc"
+            android:required="true" />
+
     <uses-permission android:name="android.permission.NFC" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -10,24 +15,34 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ReadTagActivity">
+        <receiver
+                android:name=".NfcDiscoveredReceiver"
+                android:enabled="true"
+                android:exported="true">
+
+        </receiver>
+
+        <activity android:name=".ui.AboutActivity" />
+        <activity
+                android:name=".ui.ReadTagActivity">
             <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
+
             <meta-data
                     android:name="android.nfc.action.TECH_DISCOVERED"
-                    android:resource="@xml/nfc_capabilities"
-                    />
+                    android:resource="@xml/nfc_capabilities" />
         </activity>
-        <activity android:name=".UploadActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.UploadActivity" />
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.EnterTextActivity" />
     </application>
 
 </manifest>

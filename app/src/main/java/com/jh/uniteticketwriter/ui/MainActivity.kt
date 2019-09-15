@@ -1,8 +1,9 @@
-package com.jh.uniteticketwriter
+package com.jh.uniteticketwriter.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jh.uniteticketwriter.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
