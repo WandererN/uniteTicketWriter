@@ -18,6 +18,7 @@ class ReadTagActivity : AppCompatActivity() {
                 val tag = intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
                 cardManager.connect(tag)
                 Log.d(LOGTAG, "Read Card! \n Available ${cardManager.availableSizeBytes} bytes")
+                Log.d(LOGTAG, "Card content: ${cardManager.readAllRaw().toTypedArray().toHexString(4)}")
             } catch (e: IOException) {
                 e.printStackTrace()
             }

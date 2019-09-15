@@ -2,8 +2,8 @@ package com.jh.uniteticketwriter
 
 import android.nfc.NdefMessage
 import android.nfc.Tag
-import android.nfc.tech.MifareUltralight
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import kotlin.experimental.and
 import kotlin.math.min
@@ -23,9 +23,10 @@ class MikronCardManager {
             return (maximumSize - lockedPages.size) * sectionSize
         }
 
-    private var mfc: MifareUltralight? = null
+    private var mfc: MikronCard? = null
     private fun getBitValue(byte: Byte, num: Int): Boolean {
-        return byte and (1 shl num).toByte() == 1.toByte()
+        val m = (byte.toInt() shr  num).toByte() and 1
+        return m == 1.toByte()
     }
 
     private fun isPageLocked(num: Int): Boolean {//num should be 4..35
@@ -40,7 +41,7 @@ class MikronCardManager {
                 else -> false
             }
             sectionWithIndividualLockInfo = num / 8
-            bitNumberInByte = (num - 1) % 8
+            bitNumberInByte = num % 8
 
         } else {
             sectionWithIndividualLockInfo = ((num - 16) / 2 + 16) / 8
@@ -52,9 +53,9 @@ class MikronCardManager {
 
     private fun readLockInformation() {
         try {
-            val readPagesFirst = mfc?.readPages(lockInformationPageFirst) ?: ByteArray(4)
-            val readPagesSecond = mfc?.readPages(lockInformationPageSecond) ?: ByteArray(4)
-            readPagesFirst.copyInto(locks, 0, 2, 3)
+            val readPagesFirst = mfc?.readPages(lockInformationPageFirst.toByte()) ?: ByteArray(4)
+            val readPagesSecond = mfc?.readPages(lockInformationPageSecond.toByte()) ?: ByteArray(4)
+            readPagesFirst.copyInto(locks, 0, 2, 4)
             readPagesSecond.copyInto(locks, 2, 0, 2)
         } catch (e: IOException) {
             e.printStackTrace()
@@ -70,7 +71,7 @@ class MikronCardManager {
     }
 
     fun connect(tag: Tag) {
-        mfc = MifareUltralight.get(tag)
+        mfc = MikronCard(tag)
         mfc?.connect()
         updateLockInformation()
     }
@@ -85,8 +86,15 @@ class MikronCardManager {
         var currentSection = min(startSection, lockedPages.min() ?: startSection)
         while (bytesStream.available() > 0) {
             val readSize = bytesStream.read(sectionBuffer)
-            mfc?.writePage(currentSection, sectionBuffer.copyOfRange(0, readSize))
+            mfc?.writePage(currentSection.toByte(), sectionBuffer.copyOfRange(0, readSize))
             currentSection++
         }
+    }
+
+    fun readAllRaw(): ByteArray {
+        val bis = ByteArrayOutputStream()
+        for (i in 0..40)
+            bis.write(mfc?.readPages(i.toByte()))
+        return bis.toByteArray()
     }
 }
