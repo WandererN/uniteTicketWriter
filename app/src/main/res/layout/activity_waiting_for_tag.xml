@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        tools:context=".ReadTagActivity">
+
+    <TextView
+            android:id="@+id/waiting_for_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:background="@color/card_background_color"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingLeft="30dp"
+            android:paddingEnd="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/reading_tag_caption"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:typeface="monospace"
+
+            app:layout_constraintBottom_toTopOf="@+id/nfc_wait_pictute"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+            android:id="@+id/nfc_wait_pictute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_nfc_waiting"
+            android:contentDescription="@string/reading_tag_caption" />
+</androidx.constraintlayout.widget.ConstraintLayout>

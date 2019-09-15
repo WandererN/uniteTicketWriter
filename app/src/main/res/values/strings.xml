@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Unite Ticket Writer</string>
+    <string name="upload_button_caption">Upload</string>
+    <string name="load_button_caption">Read card</string>
+    <string name="about_button_caption">About…</string>
+    <string name="add_text_caption">Text</string>
+    <string name="wifi_ap_info_caption">Wifi Ap Info</string>
+    <string name="contact_information_caption">Contact information</string>
+    <string name="bt_device_info_caption">BT device info</string>
+    <string name="write_tag_caption">Write TAG</string>
+    <string name="reading_tag_caption">Reading TAG…</string>
+    <string name="about_united_ticket_writer_header">About…  \nUnite Ticket Writer</string>
+</resources>
