@@ -6,8 +6,9 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 class MikronCard(tag: Tag) {
-    private val READ_CMD = (0x30 and 0xFF).toByte()
-    private val WRITE_CMD = (0xA2 and 0xFF).toByte()
+
+    private val READ_CMD = 0x30.toByte()
+    private val WRITE_CMD = 0xA2.toByte()
     private val START_SECTION = 4
     private val END_SECTION = 35
     private var manager: NfcA? = null

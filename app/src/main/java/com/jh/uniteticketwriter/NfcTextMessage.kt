@@ -4,6 +4,7 @@ import com.jh.uniteticketwriter.exceptions.MessageNotSetException
 
 class NfcTextMessage : NfcCustomMessage<String> {
     constructor()
+
     constructor(message: String) {
         this.message = message
     }

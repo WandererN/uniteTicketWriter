@@ -1,16 +1,17 @@
 package com.jh.uniteticketwriter.ui
 
-import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.jh.uniteticketwriter.Config
 import com.jh.uniteticketwriter.NfcTextMessage
 import com.jh.uniteticketwriter.R
 import kotlinx.android.synthetic.main.activity_write_text.*
 
-class EnterTextActivity : Activity() {
+class EnterTextActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_text)
+
         write_text_tag_button.setOnClickListener {
             if (Config.currentManager != null)
                 try {
@@ -20,5 +21,6 @@ class EnterTextActivity : Activity() {
                     //TODO add alertDialog to show error
                 }
         }
+        
     }
 }
