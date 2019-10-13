@@ -1,11 +1,12 @@
 package com.jh.uniteticketwriter.nfc
 
-import android.nfc.NdefMessage
 import android.nfc.Tag
 import com.jh.uniteticketwriter.Config
-import com.jh.uniteticketwriter.NfcCustomMessage
-import com.jh.uniteticketwriter.NfcTextMessage
+import com.jh.uniteticketwriter.nfc.message.NfcCustomMessage
 import com.jh.uniteticketwriter.exceptions.NotEnoughSpaceException
+import com.jh.uniteticketwriter.exceptions.UnknownMessageType
+import com.jh.uniteticketwriter.nfc.message.CustomNFCMessageParser
+import com.jh.uniteticketwriter.nfc.message.NfcMessageTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -91,15 +92,21 @@ class MikronCardManager {
 
 
     fun writeNdef(messageNdef: NfcCustomMessage<*>) {
-        val baos = ByteArrayOutputStream()
-        var messageBytes = messageNdef.toByteArray()
-        baos.write(messageBytes.size)
-        baos.write(messageBytes)
-        messageBytes = baos.toByteArray()
+        val messageBytes = messageNdef.toByteArray()
+
+        val fullMessageBytes = ByteArrayOutputStream().apply {
+            use {
+                it.write(messageBytes.size)
+                it.write(messageNdef.type.toInt())
+                it.write(messageBytes)
+            }
+        }.toByteArray()
+
         val sectionBuffer = ByteArray(sectionSize)
-        if (messageBytes.size > availableSizeBytes)
+        if (fullMessageBytes.size > availableSizeBytes)
             throw NotEnoughSpaceException()
-        val bytesStream = ByteArrayInputStream(messageBytes)
+
+        val bytesStream = ByteArrayInputStream(fullMessageBytes)
         var currentSection = getFirstWritableSection()
         while (bytesStream.available() > 0) {
             if (currentSection !in lockedPages) {
@@ -114,24 +121,26 @@ class MikronCardManager {
         val baos = ByteArrayOutputStream()
         val firstSection = getFirstWritableSection()
         var ndefSize = 0
+        var ndefType: NfcMessageTypes? = null
         for (i in firstSection..stopSection) {
             if (i !in lockedPages) {
                 val page = mfc?.readPages(i.toByte()) ?: throw IOException()
+
                 if (i == firstSection) {
                     ndefSize = page[0].toInt()
-                    baos.write(page.copyOfRange(1, 4))
+                    ndefType = NfcMessageTypes.fromInt(page[1].toInt())
+                    baos.write(page.copyOfRange(2, 4))
                 } else {
-
                     baos.write(page.copyOfRange(0, min(ndefSize - baos.size(), page.size)))
                 }
             }
             if (baos.size() == ndefSize)
                 break
         }
-        val txtMess = NfcTextMessage()
-        txtMess.parse(baos.toByteArray())
-        baos.close()
-        return txtMess
+        ndefType?.let {
+            return CustomNFCMessageParser.parse(baos.toByteArray(), ndefType)
+        }
+        throw UnknownMessageType()
     }
 
     fun readAllRaw(): ByteArray {

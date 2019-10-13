@@ -7,10 +7,6 @@ import java.io.IOException
 
 class MikronCard(tag: Tag) {
 
-    private val READ_CMD = 0x30.toByte()
-    private val WRITE_CMD = 0xA2.toByte()
-    private val START_SECTION = 4
-    private val END_SECTION = 35
     private var manager: NfcA? = null
 
     init {
@@ -42,6 +38,11 @@ class MikronCard(tag: Tag) {
         }
         baos.close()
         return true//TODO handle ack
+    }
+
+    companion object {
+        private const val WRITE_CMD = 0xA2.toByte()
+        private const val READ_CMD = 0x30.toByte()
     }
 
 }

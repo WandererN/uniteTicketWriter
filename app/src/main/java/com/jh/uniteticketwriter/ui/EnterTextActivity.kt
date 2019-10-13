@@ -3,7 +3,7 @@ package com.jh.uniteticketwriter.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jh.uniteticketwriter.Config
-import com.jh.uniteticketwriter.NfcTextMessage
+import com.jh.uniteticketwriter.nfc.message.text.NfcTextMessage
 import com.jh.uniteticketwriter.R
 import kotlinx.android.synthetic.main.activity_write_text.*
 
@@ -15,7 +15,11 @@ class EnterTextActivity : AppCompatActivity() {
         write_text_tag_button.setOnClickListener {
             if (Config.currentManager != null)
                 try {
-                    Config.currentManager?.writeNdef(NfcTextMessage(tag_text_message.text.toString()))
+                    Config.currentManager?.writeNdef(
+                        NfcTextMessage(
+                            tag_text_message.text.toString()
+                        )
+                    )
                 } catch (e: Exception) {
                     e.printStackTrace()
                     //TODO add alertDialog to show error

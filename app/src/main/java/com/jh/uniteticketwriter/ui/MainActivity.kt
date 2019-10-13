@@ -5,23 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jh.uniteticketwriter.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity() {
+    private fun startActivity(activity: Class<*>) {
+        val activityToStart = Intent(this, activity)
+        startActivity(activityToStart)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         upload_button.setOnClickListener {
-            val uploadActivity = Intent(this, UploadActivity::class.java)
-            startActivity(uploadActivity)
+            startActivity(UploadActivity::class.java)
         }
         download_button.setOnClickListener {
-            val downloadActivity = Intent(this, ReadTagActivity::class.java)
-            startActivity(downloadActivity)
+            startActivity(ReadTagActivity::class.java)
         }
         about_button.setOnClickListener {
-            val downloadActivity = Intent(this, AboutActivity::class.java)
-            startActivity(downloadActivity)
+            startActivity(AboutActivity::class.java)
 
         }
     }
