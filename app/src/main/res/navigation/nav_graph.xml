@@ -6,16 +6,58 @@
         app:startDestination="@id/mainFragment">
     <fragment
             android:id="@+id/mainFragment"
-            android:name="com.jh.uniteticketwriter.ui.main.MainFragment"
+            android:name="com.jh.uniteticketwriter.ui.main.MainMenuFragment"
             android:label="MainFragment"
             tools:layout="@layout/activity_main">
         <action
-                android:id="@+id/action_mainFragment_to_uploadTag"
-                app:destination="@id/uploadTag" />
+                android:id="@+id/action_open_upload"
+                app:destination="@id/uploadFragment"
+                app:exitAnim="@anim/fade_out_animation"
+                app:popExitAnim="@anim/fade_out_animation" />
+        <action
+                android:id="@+id/action_mainFragment_to_aboutFragment"
+                app:destination="@id/aboutFragment"
+                app:exitAnim="@anim/fade_out_animation"
+                app:popExitAnim="@anim/fade_out_animation" />
+        <action
+                android:id="@+id/action_mainFragment_to_readFragment"
+                app:destination="@id/readFragment"
+                app:exitAnim="@anim/fade_out_animation"
+                app:launchSingleTop="true"
+                app:popExitAnim="@anim/fade_out_animation" />
     </fragment>
     <fragment
-            android:id="@+id/uploadTag"
-            android:name="com.jh.uniteticketwriter.ui.main.UploadTag"
+            android:id="@+id/uploadFragment"
+            android:name="com.jh.uniteticketwriter.ui.upload.WriteTagMenuFragment"
             android:label="upload_tag_fragment"
-            tools:layout="@layout/activity_upload" />
+            tools:layout="@layout/activity_upload" >
+        <action
+                android:id="@+id/action_uploadFragment_to_writeTextFragment"
+                app:destination="@id/writeTextFragment"
+                app:exitAnim="@anim/fade_out_animation"
+                app:popExitAnim="@anim/fade_out_animation" />
+    </fragment>
+    <fragment
+            android:id="@+id/aboutFragment"
+            android:name="com.jh.uniteticketwriter.ui.about.AboutFragment"
+            android:label="AboutFragment"
+            tools:layout="@layout/activity_about" />
+    <fragment
+            android:id="@+id/readFragment"
+            android:name="com.jh.uniteticketwriter.ui.read.ReadTagFragment"
+            android:label="ReadFragment"
+            tools:layout="@layout/activity_waiting_for_tag" >
+        <argument
+                android:name="messageTypeToShow"
+                app:argType="com.jh.uniteticketwriter.nfc.message.MessageNfcTypes" />
+    </fragment>
+    <fragment
+            android:id="@+id/writeTextFragment"
+            android:name="com.jh.uniteticketwriter.ui.upload.WriteTagFragmentHost"
+            android:label="WriteTextFragment"
+            tools:layout="@layout/activity_write_text" >
+        <argument
+                android:name="messageTypeToWrite"
+                app:argType="com.jh.uniteticketwriter.nfc.message.MessageNfcTypes" />
+    </fragment>
 </navigation>
