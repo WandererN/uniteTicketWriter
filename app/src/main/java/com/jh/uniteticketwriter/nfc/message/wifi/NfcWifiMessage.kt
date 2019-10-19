@@ -29,7 +29,7 @@ class NfcWifiMessage(override var message: WifiRecord? = null) :
         }
     }.toByteArray()
 
-    override fun parse(data: ByteArray): NfcWifiMessage {
+    override fun parse(data: ByteArray) = apply {
         ByteArrayInputStream(data).use {
             val authType = it.read()
             val ssid = it.readString()
@@ -46,8 +46,6 @@ class NfcWifiMessage(override var message: WifiRecord? = null) :
                 }
                 message = WifiRecord(a, ssid, pass, userName)
             }
-
         }
-        return this
     }
 }

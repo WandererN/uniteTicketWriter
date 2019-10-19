@@ -15,6 +15,8 @@ class MikronCard(tag: Tag) {
 
     fun connect() = manager?.connect()
 
+    fun close() = manager?.close()
+
     fun readPages(section: Byte): ByteArray =
         manager?.transceive(byteArrayOf(READ_CMD, section))?.copyOfRange(0, 4)
             ?: throw IOException()
