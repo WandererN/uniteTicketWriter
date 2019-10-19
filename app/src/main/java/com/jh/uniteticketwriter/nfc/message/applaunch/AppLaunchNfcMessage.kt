@@ -7,7 +7,7 @@ import com.jh.uniteticketwriter.nfc.message.MessageNfcTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
-class AppLauchNfcMessage(override var message: AppLaunchRecord? = null) :
+class AppLaunchNfcMessage(override var message: AppLaunchRecord? = null) :
     CustomNfcMessage<AppLaunchRecord> {
 
     override val type = MessageNfcTypes.APP_LAUNCH.toInt()
