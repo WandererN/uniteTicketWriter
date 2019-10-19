@@ -27,19 +27,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-            android:id="@+id/tag_text_message"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+
+    <FrameLayout
+            android:id="@+id/write_tag_fragment"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/card_background_color"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/enter_text"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/write_text_tag_button"
             app:layout_constraintEnd_toEndOf="@+id/tag_write_header"
             app:layout_constraintStart_toStartOf="@+id/tag_write_header"
