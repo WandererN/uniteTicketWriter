@@ -12,7 +12,7 @@ class UploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
         write_text_button.setOnClickListener {
-            val enterTextActivity = Intent(this, EnterTextActivity::class.java)
+            val enterTextActivity = Intent(this, WriteTagActivity::class.java)
             startActivity(enterTextActivity)
         }
     }

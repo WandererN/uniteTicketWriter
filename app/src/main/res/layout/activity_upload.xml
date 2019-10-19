@@ -41,6 +41,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/write_wifi_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
@@ -62,6 +63,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/write_app_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -72,7 +74,7 @@
                 app:cardElevation="8dp">
 
             <TextView
-                    android:id="@+id/write_contact_caption"
+                    android:id="@+id/write_app_caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/ic_contacts"
@@ -83,6 +85,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/write_bluetooth_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -93,7 +96,7 @@
                 app:cardElevation="8dp">
 
             <TextView
-                    android:id="@+id/write_bluetooth_device_pairing_caption"
+                    android:id="@+id/write_bluetooth_caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/ic_bluetooth"
