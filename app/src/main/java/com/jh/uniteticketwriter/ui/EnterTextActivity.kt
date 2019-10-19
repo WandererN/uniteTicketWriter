@@ -13,18 +13,17 @@ class EnterTextActivity : AppCompatActivity() {
         setContentView(R.layout.activity_write_text)
 
         write_text_tag_button.setOnClickListener {
-            if (Config.currentManager != null)
-                try {
-                    Config.currentManager?.writeNdef(
-                        NfcTextMessage(
-                            tag_text_message.text.toString()
-                        )
+            try {
+                Config.currentManager.writeNdef(
+                    NfcTextMessage(
+                        tag_text_message.text.toString()
                     )
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    //TODO add alertDialog to show error
-                }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                //TODO add alertDialog to show error
+            }
         }
-        
+
     }
 }
