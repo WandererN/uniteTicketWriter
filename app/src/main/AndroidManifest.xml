@@ -24,7 +24,8 @@
 
         <activity android:name=".ui.AboutActivity" />
         <activity
-                android:name=".ui.ReadTagActivity">
+                android:name=".ui.ReadTagActivity"
+                android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
@@ -32,6 +33,7 @@
             <meta-data
                     android:name="android.nfc.action.TECH_DISCOVERED"
                     android:resource="@xml/nfc_capabilities" />
+
         </activity>
         <activity android:name=".ui.UploadActivity" />
         <activity android:name=".ui.MainActivity">
