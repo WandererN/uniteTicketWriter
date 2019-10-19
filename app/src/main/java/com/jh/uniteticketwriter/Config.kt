@@ -5,5 +5,5 @@ import com.jh.uniteticketwriter.nfc.MikronCardManager
 
 object Config {
     var currentCard: MikronCard? = null
-    var currentManager: MikronCardManager? = null
+    var currentManager = MikronCardManager()
 }

@@ -8,11 +8,13 @@ import com.jh.uniteticketwriter.exceptions.NotEnoughSpaceException
 import com.jh.uniteticketwriter.exceptions.UnknownMessageType
 import com.jh.uniteticketwriter.nfc.message.CustomNFCMessageParser
 import com.jh.uniteticketwriter.nfc.message.NfcMessageTypes
+import com.jh.uniteticketwriter.ui.ReadTagActivity
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import kotlin.experimental.and
 import kotlin.math.min
+import kotlin.reflect.KProperty
 
 class MikronCardManager {
     private val LOG_TAG = MikronCardManager::class.java.simpleName
@@ -78,11 +80,14 @@ class MikronCardManager {
     }
 
     fun connect(tag: Tag) {
-        mfc?.close()
         mfc = MikronCard(tag)
         Config.currentCard = mfc
         mfc?.connect()
         updateLockInformation()
+    }
+
+    fun disconnect() {
+        mfc?.close()
     }
 
     private fun getFirstWritableSection() = if (!isPageLocked(startSection)) startSection else {
@@ -155,4 +160,5 @@ class MikronCardManager {
             bis.write(mfc?.readPages(i.toByte()))
         return bis.toByteArray()
     }
+
 }

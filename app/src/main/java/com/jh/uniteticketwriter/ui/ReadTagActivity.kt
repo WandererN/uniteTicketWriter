@@ -19,7 +19,7 @@ import java.lang.Exception
 class ReadTagActivity : AppCompatActivity() {
 
     private val LOG_TAG = ReadTagActivity::class.java.simpleName
-    lateinit var cardManager: MikronCardManager
+    private var cardManager = Config.currentManager
 
     private fun enableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
 
@@ -27,11 +27,9 @@ class ReadTagActivity : AppCompatActivity() {
         // thus if activity is already started it will take precedence over any other activity or app
         // with the same intent filters
 
-
         val pendingIntent = PendingIntent.getActivity(activity.applicationContext, 0, intent, 0)
 
         val techList = arrayOf(Array(1) { "android.nfc.tech.NfcA" })
-
         val filter = IntentFilter().apply {
             addAction(NfcAdapter.ACTION_TECH_DISCOVERED)
             addCategory(Intent.CATEGORY_DEFAULT)
@@ -40,13 +38,16 @@ class ReadTagActivity : AppCompatActivity() {
         adapter?.enableForegroundDispatch(activity, pendingIntent, arrayOf(filter), techList)
     }
 
+    private fun disableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
+        adapter?.disableForegroundDispatch(activity)
+    }
+
     private fun readTag(receivedIntent: Intent?) {
         if (NfcAdapter.ACTION_TECH_DISCOVERED == receivedIntent?.action) {
             try {
                 val tag = receivedIntent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
-                cardManager = MikronCardManager()
-                Config.currentManager = cardManager
 
+                cardManager.disconnect()
                 cardManager.connect(tag)
 
                 Log.d(LOG_TAG, "Read Card! \n Available ${cardManager.availableSizeBytes} bytes")
@@ -60,10 +61,6 @@ class ReadTagActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-    }
-
-    private fun disableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
-        adapter?.disableForegroundDispatch(activity)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
