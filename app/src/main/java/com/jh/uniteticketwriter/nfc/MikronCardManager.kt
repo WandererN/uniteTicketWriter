@@ -3,18 +3,16 @@ package com.jh.uniteticketwriter.nfc
 import android.nfc.Tag
 import android.util.Log
 import com.jh.uniteticketwriter.Config
-import com.jh.uniteticketwriter.nfc.message.NfcCustomMessage
+import com.jh.uniteticketwriter.nfc.message.CustomNfcMessage
 import com.jh.uniteticketwriter.exceptions.NotEnoughSpaceException
 import com.jh.uniteticketwriter.exceptions.UnknownMessageType
 import com.jh.uniteticketwriter.nfc.message.CustomNFCMessageParser
-import com.jh.uniteticketwriter.nfc.message.NfcMessageTypes
-import com.jh.uniteticketwriter.ui.ReadTagActivity
+import com.jh.uniteticketwriter.nfc.message.MessageNfcTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import kotlin.experimental.and
 import kotlin.math.min
-import kotlin.reflect.KProperty
 
 class MikronCardManager {
     private val LOG_TAG = MikronCardManager::class.java.simpleName
@@ -99,7 +97,7 @@ class MikronCardManager {
     }
 
 
-    fun writeNdef(messageNdef: NfcCustomMessage<*>) {
+    fun writeNdef(messageNdef: CustomNfcMessage<*>) {
         val messageBytes = messageNdef.toByteArray()
 
         val fullMessageBytes = ByteArrayOutputStream().apply {
@@ -126,11 +124,11 @@ class MikronCardManager {
         Log.d(LOG_TAG, "${messageBytes.size} written success!")
     }
 
-    fun readNdef(): NfcCustomMessage<*> {
+    fun readNdef(): CustomNfcMessage<*> {
         val baos = ByteArrayOutputStream()
         val firstSection = getFirstWritableSection()
         var ndefSize = 0
-        var ndefType: NfcMessageTypes? = null
+        var ndefType: MessageNfcTypes? = null
         for (i in firstSection..stopSection) {
             if (i !in lockedPages) {
                 val page = mfc?.readPages(i.toByte()) ?: throw IOException()
@@ -139,7 +137,7 @@ class MikronCardManager {
                     ndefSize = page[0].toInt()
                     if (ndefSize <= 0)
                         throw UnknownMessageType()
-                    ndefType = NfcMessageTypes.fromInt(page[1].toInt())
+                    ndefType = MessageNfcTypes.fromInt(page[1].toInt())
                     baos.write(page.copyOfRange(2, 4))
                 } else {
                     baos.write(page.copyOfRange(0, min(ndefSize - baos.size(), page.size)))

@@ -1,16 +1,18 @@
 package com.jh.uniteticketwriter.nfc.message
 
-import com.jh.uniteticketwriter.nfc.message.bluetooth.NfcBluetoothMessage
-import com.jh.uniteticketwriter.nfc.message.text.NfcTextMessage
-import com.jh.uniteticketwriter.nfc.message.wifi.NfcWifiMessage
+import com.jh.uniteticketwriter.nfc.message.applaunch.AppLauchNfcMessage
+import com.jh.uniteticketwriter.nfc.message.bluetooth.BluetoothNfcMessage
+import com.jh.uniteticketwriter.nfc.message.text.TextNfcMessage
+import com.jh.uniteticketwriter.nfc.message.wifi.WifiNfcMessage
 
 object CustomNFCMessageParser {
-    fun parse(data: ByteArray, type: NfcMessageTypes): NfcCustomMessage<*> {
+
+    fun parse(data: ByteArray, type: MessageNfcTypes): CustomNfcMessage<*> {
         return when (type) {
-            NfcMessageTypes.TEXT -> NfcTextMessage()
-            NfcMessageTypes.WIFI -> NfcWifiMessage()
-            NfcMessageTypes.BLUETOOTH -> NfcBluetoothMessage()
-            NfcMessageTypes.CONTACT -> TODO()
+            MessageNfcTypes.TEXT -> TextNfcMessage()
+            MessageNfcTypes.WIFI -> WifiNfcMessage()
+            MessageNfcTypes.BLUETOOTH -> BluetoothNfcMessage()
+            MessageNfcTypes.APP_LAUNCH -> AppLauchNfcMessage()
         }.parse(data)
     }
 }
