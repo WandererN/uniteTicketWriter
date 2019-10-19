@@ -8,7 +8,7 @@
             android:id="@+id/mainFragment"
             android:name="com.jh.uniteticketwriter.ui.main.MainMenuFragment"
             android:label="MainFragment"
-            tools:layout="@layout/activity_main">
+            tools:layout="@layout/main_menu_fragment">
         <action
                 android:id="@+id/action_open_upload"
                 app:destination="@id/uploadFragment"
@@ -30,7 +30,7 @@
             android:id="@+id/uploadFragment"
             android:name="com.jh.uniteticketwriter.ui.upload.WriteTagMenuFragment"
             android:label="upload_tag_fragment"
-            tools:layout="@layout/activity_upload" >
+            tools:layout="@layout/write_tag_menu_fragment" >
         <action
                 android:id="@+id/action_uploadFragment_to_writeTextFragment"
                 app:destination="@id/writeTextFragment"
@@ -41,7 +41,7 @@
             android:id="@+id/aboutFragment"
             android:name="com.jh.uniteticketwriter.ui.about.AboutFragment"
             android:label="AboutFragment"
-            tools:layout="@layout/activity_about" />
+            tools:layout="@layout/about_fragment" />
     <fragment
             android:id="@+id/readFragment"
             android:name="com.jh.uniteticketwriter.ui.read.ReadTagFragment"
@@ -55,7 +55,7 @@
             android:id="@+id/writeTextFragment"
             android:name="com.jh.uniteticketwriter.ui.upload.WriteTagFragmentHost"
             android:label="WriteTextFragment"
-            tools:layout="@layout/activity_write_text" >
+            tools:layout="@layout/write_tag_fragment_host" >
         <argument
                 android:name="messageTypeToWrite"
                 app:argType="com.jh.uniteticketwriter.nfc.message.MessageNfcTypes" />

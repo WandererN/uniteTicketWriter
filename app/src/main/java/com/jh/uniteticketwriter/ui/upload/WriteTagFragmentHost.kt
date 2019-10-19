@@ -17,7 +17,7 @@ class WriteTagFragmentHost : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_write_text, container, false)
+        return inflater.inflate(R.layout.write_tag_fragment_host, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

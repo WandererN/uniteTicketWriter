@@ -10,8 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 
 import com.jh.uniteticketwriter.R
 import com.jh.uniteticketwriter.nfc.message.MessageNfcTypes
-import kotlinx.android.synthetic.main.activity_upload.*
-import kotlinx.android.synthetic.main.activity_write_text.*
+import kotlinx.android.synthetic.main.write_tag_menu_fragment.*
 
 class WriteTagMenuFragment : Fragment() {
 
@@ -20,7 +19,7 @@ class WriteTagMenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_upload, container, false)
+        return inflater.inflate(R.layout.write_tag_menu_fragment, container, false)
     }
 
     private fun navigateByType(type: MessageNfcTypes) {

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.jh.uniteticketwriter.R
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_menu_fragment.*
 
 class MainMenuFragment : Fragment() {
 
@@ -19,7 +19,7 @@ class MainMenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.activity_main, container, false)
+        return inflater.inflate(R.layout.main_menu_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
