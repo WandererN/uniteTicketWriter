@@ -3,14 +3,14 @@ package com.jh.uniteticketwriter.nfc.message.text
 import io.kotlintest.specs.StringSpec
 import io.kotlintest.shouldBe
 
-class NfcTextMessageTest : StringSpec() {
+class TextNfcMessageTest : StringSpec() {
 
     init {
         "check text message serialization/deserialization" {
             val message = "TEST"
-            val textMessage = NfcTextMessage(message)
+            val textMessage = TextNfcMessage(message)
 
-            NfcTextMessage().parse(textMessage.toByteArray()).message shouldBe message
+            TextNfcMessage().parse(textMessage.toByteArray()).message shouldBe message
 
         }
     }

@@ -1,8 +1,8 @@
 package com.jh.uniteticketwriter.nfc.message
 
-interface NfcCustomMessage<T> {
+interface CustomNfcMessage<T> {
     fun toByteArray(): ByteArray
-    fun parse(data: ByteArray): NfcCustomMessage<T>
+    fun parse(data: ByteArray): CustomNfcMessage<T>
     var message: T?
     val type: Int
 }

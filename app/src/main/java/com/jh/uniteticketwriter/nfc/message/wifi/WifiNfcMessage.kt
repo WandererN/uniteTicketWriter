@@ -2,14 +2,14 @@ package com.jh.uniteticketwriter.nfc.message.wifi
 
 import com.jh.uniteticketwriter.extensions.readString
 import com.jh.uniteticketwriter.extensions.writeString
-import com.jh.uniteticketwriter.nfc.message.NfcCustomMessage
-import com.jh.uniteticketwriter.nfc.message.NfcMessageTypes
+import com.jh.uniteticketwriter.nfc.message.CustomNfcMessage
+import com.jh.uniteticketwriter.nfc.message.MessageNfcTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
-class NfcWifiMessage(override var message: WifiRecord? = null) :
-    NfcCustomMessage<WifiRecord> {
-    override val type: Int = NfcMessageTypes.WIFI.toInt()
+class WifiNfcMessage(override var message: WifiRecord? = null) :
+    CustomNfcMessage<WifiRecord> {
+    override val type: Int = MessageNfcTypes.WIFI.toInt()
 
     override fun toByteArray(): ByteArray = ByteArrayOutputStream().apply {
         use {

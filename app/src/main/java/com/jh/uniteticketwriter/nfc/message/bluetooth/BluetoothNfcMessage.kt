@@ -2,28 +2,28 @@ package com.jh.uniteticketwriter.nfc.message.bluetooth
 
 import com.jh.uniteticketwriter.extensions.readString
 import com.jh.uniteticketwriter.extensions.writeString
-import com.jh.uniteticketwriter.nfc.message.NfcCustomMessage
-import com.jh.uniteticketwriter.nfc.message.NfcMessageTypes
+import com.jh.uniteticketwriter.nfc.message.CustomNfcMessage
+import com.jh.uniteticketwriter.nfc.message.MessageNfcTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
-class NfcBluetoothMessage(override var message: BluetoothRecord? = null) :
-    NfcCustomMessage<BluetoothRecord> {
+class BluetoothNfcMessage(override var message: BluetoothRecord? = null) :
+    CustomNfcMessage<BluetoothRecord> {
 
-    override val type = NfcMessageTypes.BLUETOOTH.toInt()
+    override val type = MessageNfcTypes.BLUETOOTH.toInt()
 
     override fun toByteArray(): ByteArray {
         return ByteArrayOutputStream().apply {
-            use { baos ->
+            use { it ->
                 message?.let { mess ->
-                    baos.writeString(mess.name)
-                    baos.writeString(mess.mac)
+                    it.writeString(mess.name)
+                    it.writeString(mess.mac)
                 }
             }
         }.toByteArray()
     }
 
-    override fun parse(data: ByteArray): NfcCustomMessage<BluetoothRecord> {
+    override fun parse(data: ByteArray): CustomNfcMessage<BluetoothRecord> {
         ByteArrayInputStream(data).use {
             message = BluetoothRecord(it.readString(), it.readString())
         }
