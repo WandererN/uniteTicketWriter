@@ -1,6 +1,7 @@
 package com.jh.uniteticketwriter.nfc
 
 import android.nfc.Tag
+import android.util.Log
 import com.jh.uniteticketwriter.Config
 import com.jh.uniteticketwriter.nfc.message.NfcCustomMessage
 import com.jh.uniteticketwriter.exceptions.NotEnoughSpaceException
@@ -14,6 +15,7 @@ import kotlin.experimental.and
 import kotlin.math.min
 
 class MikronCardManager {
+    private val LOG_TAG = MikronCardManager::class.java.simpleName
     private val locks = ByteArray(5)
     private val lockedPages = HashSet<Int>()
     private val sectionSize = 4
@@ -76,6 +78,7 @@ class MikronCardManager {
     }
 
     fun connect(tag: Tag) {
+        mfc?.close()
         mfc = MikronCard(tag)
         Config.currentCard = mfc
         mfc?.connect()
@@ -97,7 +100,7 @@ class MikronCardManager {
         val fullMessageBytes = ByteArrayOutputStream().apply {
             use {
                 it.write(messageBytes.size)
-                it.write(messageNdef.type.toInt())
+                it.write(messageNdef.type)
                 it.write(messageBytes)
             }
         }.toByteArray()
@@ -115,6 +118,7 @@ class MikronCardManager {
             }
             currentSection++
         }
+        Log.d(LOG_TAG, "${messageBytes.size} written success!")
     }
 
     fun readNdef(): NfcCustomMessage<*> {
@@ -128,6 +132,8 @@ class MikronCardManager {
 
                 if (i == firstSection) {
                     ndefSize = page[0].toInt()
+                    if (ndefSize <= 0)
+                        throw UnknownMessageType()
                     ndefType = NfcMessageTypes.fromInt(page[1].toInt())
                     baos.write(page.copyOfRange(2, 4))
                 } else {
