@@ -11,10 +11,6 @@ import com.jh.uniteticketwriter.R
 
 class WriteAppLaunchFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = WriteAppLaunchFragment()
-    }
-
     private lateinit var viewModel: WriteAppLaunchViewModel
 
     override fun onCreateView(
