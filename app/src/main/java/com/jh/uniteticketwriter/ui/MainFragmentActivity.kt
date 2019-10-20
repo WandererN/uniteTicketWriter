@@ -11,4 +11,13 @@ class MainFragmentActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_fragment)
+        val activeFragment = navHostFragment?.childFragmentManager?.fragments?.get(0)
+        activeFragment?.let {
+            if(it is IntentListenerFragment)
+                it.onIntent(intent)
+        }
+    }
 }
