@@ -10,11 +10,13 @@ import androidx.lifecycle.ViewModelProviders
 
 
 abstract class BaseViewModelFragment<T : ViewModel>(
-    val layoutId: Int,
-    val viewModelClass: Class<T>
+    private val layoutId: Int,
+    private val viewModelClass: Class<T>
 ) :
     Fragment() {
-    protected lateinit var viewModel: T
+
+    lateinit var viewModel: T
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
