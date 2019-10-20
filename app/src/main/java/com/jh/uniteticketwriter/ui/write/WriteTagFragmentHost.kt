@@ -22,9 +22,9 @@ class WriteTagFragmentHost : BaseViewModelFragment<WriteTagViewModel>(
             R.id.write_tag_fragment,
             fragment
         )?.commit()
-        viewModel.childViewModel = fragment.viewModel as WriteViewModel
 
         write_tag_button.setOnClickListener {
+            viewModel.childViewModel = fragment.viewModel as WriteViewModel
             viewModel.writeTag()
         }
     }

@@ -27,7 +27,7 @@ class WriteTagViewModel : ViewModel() {
 
     fun writeTag() {
         childViewModel?.let {
-            if(it.validate()) {
+            if (it.validate()) {
                 cardManager.writeNdef(it.getMessage())
             }
         }

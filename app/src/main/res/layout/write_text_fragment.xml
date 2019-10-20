@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/card_background_color"
-        android:orientation="vertical"
-        tools:context=".ui.write.text.WriteTextFragment">
+<layout>
 
-    <EditText
-            android:id="@+id/tag_text_message"
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.jh.uniteticketwriter.ui.write.text.WriteTextViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/enter_text"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:textColor="@android:color/white" />
-</LinearLayout>
+            android:background="@color/card_background_color"
+            android:orientation="vertical"
+            tools:context=".ui.write.text.WriteTextFragment">
+
+        <EditText
+                android:id="@+id/tag_text_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/enter_text"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:text="@={viewModel.text}"
+                android:textColor="@android:color/white" />
+    </LinearLayout>
+</layout>
