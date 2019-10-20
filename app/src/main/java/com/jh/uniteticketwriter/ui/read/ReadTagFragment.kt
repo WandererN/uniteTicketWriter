@@ -1,28 +1,20 @@
 package com.jh.uniteticketwriter.ui.read
 
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import android.content.Intent
 import com.jh.uniteticketwriter.R
+import com.jh.uniteticketwriter.ui.IntentListenerFragment
+import com.jh.uniteticketwriter.ui.base.BaseViewModelFragment
 
-class ReadTagFragment : Fragment() {
-    private lateinit var viewModel: ReadTagViewModel
+class ReadTagFragment :
+    BaseViewModelFragment<ReadTagViewModel>(
+        R.layout.activity_waiting_for_tag,
+        ReadTagViewModel::class.java
+    ),
+    IntentListenerFragment {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.activity_waiting_for_tag, container, false)
+    override fun onIntent(intent: Intent?) {
+        viewModel.readTag(intent)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ReadTagViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
