@@ -18,50 +18,6 @@ import java.lang.Exception
 
 class ReadTagActivity : AppCompatActivity() {
 
-    private val LOG_TAG = ReadTagActivity::class.java.simpleName
-    private var cardManager = Config.currentManager
-
-    private fun enableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
-
-        // here we are setting up receiving activity for a foreground dispatch
-        // thus if activity is already started it will take precedence over any other activity or app
-        // with the same intent filters
-
-        val pendingIntent = PendingIntent.getActivity(activity.applicationContext, 0, intent, 0)
-
-        val techList = arrayOf(Array(1) { "android.nfc.tech.NfcA" })
-        val filter = IntentFilter().apply {
-            addAction(NfcAdapter.ACTION_TECH_DISCOVERED)
-            addCategory(Intent.CATEGORY_DEFAULT)
-        }
-
-        adapter?.enableForegroundDispatch(activity, pendingIntent, arrayOf(filter), techList)
-    }
-
-    private fun disableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
-        adapter?.disableForegroundDispatch(activity)
-    }
-
-    private fun readTag(receivedIntent: Intent?) {
-        if (NfcAdapter.ACTION_TECH_DISCOVERED == receivedIntent?.action) {
-            try {
-                val tag = receivedIntent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
-
-                cardManager.disconnect()
-                cardManager.connect(tag)
-
-                Log.d(LOG_TAG, "Read Card! \n Available ${cardManager.availableSizeBytes} bytes")
-                Log.d(
-                    LOG_TAG,
-                    "Card content: ${cardManager.readAllRaw().toTypedArray().toHexString(4)}"
-                )
-
-                tag_message.text = cardManager.readNdef().message.toString()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,18 +25,16 @@ class ReadTagActivity : AppCompatActivity() {
     }
 
     override fun onNewIntent(intent: Intent?) {
-        readTag(intent)
         super.onNewIntent(intent)
     }
 
     override fun onResume() {
-        enableForegroundDispatch(this, NfcAdapter.getDefaultAdapter(this))
-        readTag(intent)
+//        enableForegroundDispatch(this, NfcAdapter.getDefaultAdapter(this))
         super.onResume()
     }
 
     override fun onPause() {
-        disableForegroundDispatch(this, NfcAdapter.getDefaultAdapter(this))
+//        disableForegroundDispatch(this, NfcAdapter.getDefaultAdapter(this))
         super.onPause()
     }
 }
