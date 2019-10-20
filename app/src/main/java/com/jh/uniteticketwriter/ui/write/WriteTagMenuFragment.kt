@@ -12,8 +12,6 @@ class WriteTagMenuFragment : BaseViewModelFragment<WriteTagViewModel>(
     WriteTagViewModel::class.java
 ) {
 
-    private lateinit var menuViewModel: WriteTagMenuViewModel
-
     private fun navigateByType(type: MessageNfcTypes) {
         NavHostFragment.findNavController(this).let {
             val action = WriteTagMenuFragmentDirections
