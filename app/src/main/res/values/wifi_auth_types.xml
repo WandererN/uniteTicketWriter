@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="wifi_auth_types">
+        <item>No authorization</item>
+        <item>WPA2</item>
+        <item>WPA2 Enterprise</item>
+    </array>
+</resources>
