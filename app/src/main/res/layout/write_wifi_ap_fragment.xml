@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/card_background_color"
-        tools:context=".ui.write.wifi.WriteWifiApFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="com.jh.uniteticketwriter.ui.write.wifi.WriteWifiApViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_background_color"
+            tools:context=".ui.write.wifi.WriteWifiApFragment">
 
-        <EditText
-                android:id="@+id/editText2"
-                android:layout_width="0dp"
+        <LinearLayout
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="User name"
-                app:layout_constraintEnd_toEndOf="@+id/spinner"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                android:orientation="vertical"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-                android:id="@+id/editText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="SSID"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                    android:id="@+id/wifi_ap_ssid_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="SSID"
+                    android:text="@={viewModel.ssid}" />
 
-        <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Auth type:"
-                app:layout_constraintBottom_toBottomOf="@+id/spinner"
-                app:layout_constraintStart_toStartOf="@+id/editText"
-                app:layout_constraintTop_toTopOf="@+id/spinner" />
 
-        <EditText
-                android:id="@+id/editText3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Password"
-                app:layout_constraintEnd_toEndOf="@+id/editText2"
-                app:layout_constraintStart_toStartOf="@+id/editText2"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/editText"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                <TextView
+                        android:id="@+id/wifi_ap_auth_type_caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="Auth type:" />
+
+                <Spinner
+                        android:id="@+id/wifi_ap_auth_type_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:entries="@array/wifi_auth_types" />
+
+            </LinearLayout>
+
+            <EditText
+                    android:id="@+id/wifi_ap_user_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="User Name"
+                    android:hint="User name"
+                    android:text="@={viewModel.userName}"
+                    android:visibility="@{viewModel.userNameVisibility==0 ? View.VISIBLE : View.GONE}" />
+
+
+            <EditText
+                    android:id="@+id/wifi_ap_password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:text="@={viewModel.password}" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
