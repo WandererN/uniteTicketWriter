@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload
+package com.jh.uniteticketwriter.ui.write
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload.bluetooth
+package com.jh.uniteticketwriter.ui.write.bluetooth
 
 import androidx.lifecycle.ViewModel
 

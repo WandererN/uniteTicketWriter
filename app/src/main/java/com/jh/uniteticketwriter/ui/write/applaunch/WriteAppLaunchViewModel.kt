@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload.applaunch
+package com.jh.uniteticketwriter.ui.write.applaunch
 
 import androidx.lifecycle.ViewModel
 

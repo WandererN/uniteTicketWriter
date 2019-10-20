@@ -28,7 +28,7 @@
     </fragment>
     <fragment
             android:id="@+id/uploadFragment"
-            android:name="com.jh.uniteticketwriter.ui.upload.WriteTagMenuFragment"
+            android:name="com.jh.uniteticketwriter.ui.write.WriteTagMenuFragment"
             android:label="upload_tag_fragment"
             tools:layout="@layout/write_tag_menu_fragment" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
             android:id="@+id/writeTextFragment"
-            android:name="com.jh.uniteticketwriter.ui.upload.WriteTagFragmentHost"
+            android:name="com.jh.uniteticketwriter.ui.write.WriteTagFragmentHost"
             android:label="WriteTextFragment"
             tools:layout="@layout/write_tag_fragment_host" >
         <argument

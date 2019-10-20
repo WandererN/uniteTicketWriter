@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload.wifi
+package com.jh.uniteticketwriter.ui.write.applaunch
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,20 +9,20 @@ import android.view.ViewGroup
 
 import com.jh.uniteticketwriter.R
 
-class WriteWifiApFragment : Fragment() {
+class WriteAppLaunchFragment : Fragment() {
 
-    private lateinit var viewModel: WriteWifiApViewModel
+    private lateinit var viewModel: WriteAppLaunchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.write_wifi_ap_fragment, container, false)
+        return inflater.inflate(R.layout.write_app_launch_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(WriteWifiApViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(WriteAppLaunchViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload.applaunch
+package com.jh.uniteticketwriter.ui.write.text
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,20 +9,21 @@ import android.view.ViewGroup
 
 import com.jh.uniteticketwriter.R
 
-class WriteAppLaunchFragment : Fragment() {
+class WriteTextFragment : Fragment() {
 
-    private lateinit var viewModel: WriteAppLaunchViewModel
+
+    private lateinit var viewModel: WriteTextViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.write_app_launch_fragment, container, false)
+        return inflater.inflate(R.layout.write_text_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(WriteAppLaunchViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(WriteTextViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

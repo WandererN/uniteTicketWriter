@@ -1,4 +1,4 @@
-package com.jh.uniteticketwriter.ui.upload.wifi
+package com.jh.uniteticketwriter.ui.write.wifi
 
 import androidx.lifecycle.ViewModel
 
