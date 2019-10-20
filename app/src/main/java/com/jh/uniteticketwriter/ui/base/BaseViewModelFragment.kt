@@ -7,6 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import android.R.attr.data
+import android.R
+import androidx.databinding.DataBindingUtil
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.databinding.ViewDataBinding
+import com.jh.uniteticketwriter.BR
 
 
 abstract class BaseViewModelFragment<T : ViewModel>(
@@ -21,13 +27,16 @@ abstract class BaseViewModelFragment<T : ViewModel>(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(layoutId, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(viewModelClass)
-        // TODO: Use the ViewModel
+
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(
+            inflater, layoutId, container, false
+        )
+            ?: return inflater.inflate(layoutId, container, false)
+        val view = binding.root
+        //here data must be an instance of the class MarsDataProvider
+        binding.setVariable(BR.viewModel, viewModel)
+        return view
     }
 
 }
