@@ -14,4 +14,8 @@
     <string name="enter_text">Enter text</string>
     <string name="enter_text_field">Enter text field</string>
     <string name="write_application_launch_information">Write application launch information</string>
+    <string name="ssid">SSID</string>
+    <string name="auth_type">Auth type:</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
 </resources>

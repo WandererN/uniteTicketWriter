@@ -31,7 +31,7 @@
                     android:id="@+id/wifi_ap_ssid_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="SSID"
+                    android:hint="@string/ssid"
                     android:text="@={viewModel.ssid}" />
 
 
@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.1"
-                        android:text="Auth type:" />
+                        android:text="@string/auth_type" />
 
                 <Spinner
                         android:id="@+id/wifi_ap_auth_type_spinner"
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="User Name"
-                    android:hint="User name"
+                    android:hint="@string/user_name"
                     android:text="@={viewModel.userName}"
                     android:visibility="@{viewModel.userNameVisibility==0 ? View.VISIBLE : View.GONE}" />
 
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:text="@={viewModel.password}" />
 
         </LinearLayout>
