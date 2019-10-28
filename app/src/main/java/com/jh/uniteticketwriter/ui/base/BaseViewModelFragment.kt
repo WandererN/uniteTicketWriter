@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import android.R.attr.data
-import android.R
-import androidx.databinding.DataBindingUtil
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.databinding.ViewDataBinding
 import com.jh.uniteticketwriter.BR
 
 
