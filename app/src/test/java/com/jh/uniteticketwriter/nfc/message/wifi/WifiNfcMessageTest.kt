@@ -25,7 +25,7 @@ class WifiNfcMessageTest : StringSpec() {
             WifiNfcMessage().parse(wifiMessage.toByteArray()).message shouldBe wifiRecord
         }
         "check wifi message with wpa2 enterprise serialization/deserialization" {
-            val wifiRecord = WifiRecord(AuthTypes.WPA2_PSK, "wifiNet", "password", "username")
+            val wifiRecord = WifiRecord(AuthTypes.WPA2_ENTERPRIZE, "wifiNet", "password", "username")
             val wifiMessage = WifiNfcMessage(wifiRecord)
 
             WifiNfcMessage().parse(wifiMessage.toByteArray()).message shouldBe wifiRecord

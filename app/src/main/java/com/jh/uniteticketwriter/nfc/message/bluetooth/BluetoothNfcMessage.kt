@@ -25,7 +25,7 @@ class BluetoothNfcMessage(override var message: BluetoothRecord? = null) :
 
     override fun parse(data: ByteArray): CustomNfcMessage<BluetoothRecord> {
         ByteArrayInputStream(data).use {
-            message = BluetoothRecord(it.readString(), it.readString())
+            message = BluetoothRecord(name = it.readString(), mac = it.readString())
         }
         return this
     }
