@@ -13,4 +13,5 @@
     <string name="write_text">Write text</string>
     <string name="enter_text">Enter text</string>
     <string name="enter_text_field">Enter text field</string>
+    <string name="write_application_launch_information">Write application launch information</string>
 </resources>
