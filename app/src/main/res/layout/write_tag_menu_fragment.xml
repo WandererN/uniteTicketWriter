@@ -24,7 +24,8 @@
                 android:layout_margin="@dimen/default_margin"
                 android:background="@color/card_background_color"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardElevation="8dp"
+                android:foreground="?android:attr/selectableItemBackground">
 
             <TextView
                     android:id="@+id/write_text_caption"
@@ -46,7 +47,8 @@
                 android:layout_margin="@dimen/default_margin"
                 android:background="@color/card_background_color"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardElevation="8dp"
+                android:foreground="?android:attr/selectableItemBackground">
 
             <TextView
                     android:id="@+id/write_wifi_caption"
@@ -68,7 +70,8 @@
                 android:layout_margin="@dimen/default_margin"
                 android:background="@color/card_background_color"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardElevation="8dp"
+                android:foreground="?android:attr/selectableItemBackground">
 
             <TextView
                     android:id="@+id/write_app_caption"
@@ -90,7 +93,8 @@
                 android:layout_margin="@dimen/default_margin"
                 android:background="@color/card_background_color"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardElevation="8dp"
+                android:foreground="?android:attr/selectableItemBackground">
 
             <TextView
                     android:id="@+id/write_bluetooth_caption"
