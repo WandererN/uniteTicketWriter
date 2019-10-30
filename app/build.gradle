@@ -11,6 +11,9 @@ android {
     dataBinding {
         enabled = true
     }
+    kapt {
+        generateStubs = true
+    }
 
     defaultConfig {
         applicationId "com.jh.uniteticketwriter"
