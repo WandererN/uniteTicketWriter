@@ -18,7 +18,7 @@
             tools:context=".ui.write.wifi.WriteWifiApFragment">
 
         <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical"
@@ -31,7 +31,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/ssid"
-                    android:text="@={viewModel.ssid}" />
+                    android:text="@={viewModel.ssid}"
+                    android:inputType="text"
+                    android:importantForAutofill="no" />
 
 
             <LinearLayout
@@ -59,10 +61,11 @@
                     android:id="@+id/wifi_ap_user_name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="User Name"
                     android:hint="@string/user_name"
                     android:text="@={viewModel.userName}"
-                    android:visibility="@{viewModel.userNameVisibility==0 ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{viewModel.userNameVisibility==0 ? View.VISIBLE : View.GONE}"
+                    android:inputType="textPersonName"
+                    android:importantForAutofill="no" />
 
 
             <EditText
@@ -71,7 +74,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/password"
-                    android:text="@={viewModel.password}" />
+                    android:text="@={viewModel.password}"
+                    android:inputType="textVisiblePassword"
+                    android:importantForAutofill="no" />
 
         </LinearLayout>
 
