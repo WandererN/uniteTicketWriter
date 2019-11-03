@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/upload_button"
             android:layout_width="@dimen/menu_button_width"
             android:layout_height="wrap_content"
@@ -45,9 +45,9 @@
                     android:text="@string/upload_button_caption"
                     android:textAlignment="center" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/download_button"
             android:layout_width="@dimen/menu_button_width"
             android:layout_height="wrap_content"
@@ -88,9 +88,9 @@
                     android:textAlignment="center" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/about_button"
             android:layout_width="@dimen/menu_button_width"
             android:layout_height="wrap_content"
@@ -130,5 +130,5 @@
                     android:text="@string/about_button_caption"
                     android:textAlignment="center" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,11 +37,11 @@
             app:layout_constraintStart_toStartOf="@+id/tag_write_header"
             app:layout_constraintTop_toBottomOf="@+id/tag_write_header" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
+            android:layout_marginBottom="16dp"
             app:cardElevation="8dp"
             app:cardBackgroundColor="@color/card_background_color"
             android:foreground="?android:attr/selectableItemBackground"
@@ -56,9 +56,9 @@
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:contentDescription="@string/write_text"
-                android:padding="8dp"
+                android:padding="16dp"
                 android:src="@drawable/ic_nfc_waiting" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

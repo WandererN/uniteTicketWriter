@@ -3,10 +3,7 @@
     <array name="wifi_auth_types">
         <item>Open</item>
         <item>WEP</item>
-        <item>WPA</item>
         <item>WPA2 Personal</item>
         <item>WPA2 Enterprise</item>
-        <item>WPA3 Personal</item>
-        <item>WPA3 Enterprise</item>
     </array>
 </resources>

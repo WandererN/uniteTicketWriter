@@ -15,7 +15,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
                 android:id="@+id/write_text_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,11 +34,10 @@
                     android:drawableTop="@drawable/ic_text"
                     android:gravity="center_horizontal|center_vertical"
                     android:padding="8dp"
-                    android:text="@string/add_text_caption"
-                    android:textColor="@android:color/white" />
-        </androidx.cardview.widget.CardView>
+                    android:text="@string/add_text_caption" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
                 android:id="@+id/write_wifi_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,11 +56,10 @@
                     android:drawableTop="@drawable/ic_wifi_icon"
                     android:gravity="center_horizontal|center_vertical"
                     android:padding="8dp"
-                    android:text="@string/wifi_ap_info_caption"
-                    android:textColor="@android:color/white" />
-        </androidx.cardview.widget.CardView>
+                    android:text="@string/wifi_ap_info_caption" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
                 android:id="@+id/write_app_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,11 +78,10 @@
                     android:drawableTop="@drawable/ic_contacts"
                     android:gravity="center_horizontal|center_vertical"
                     android:padding="8dp"
-                    android:text="@string/contact_information_caption"
-                    android:textColor="@android:color/white" />
-        </androidx.cardview.widget.CardView>
+                    android:text="@string/contact_information_caption" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
                 android:id="@+id/write_bluetooth_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,29 +100,33 @@
                     android:drawableTop="@drawable/ic_bluetooth"
                     android:gravity="center_horizontal|center_vertical"
                     android:padding="8dp"
-                    android:text="@string/bt_device_info_caption"
-                    android:textColor="@android:color/white" />
-        </androidx.cardview.widget.CardView>
+                    android:text="@string/bt_device_info_caption" />
+        </com.google.android.material.card.MaterialCardView>
     </GridLayout>
 
-    <TextView
-            android:id="@+id/write_tag_header"
-            android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            android:background="@color/card_background_color"
-            android:gravity="center"
-            android:padding="10dp"
-            android:paddingLeft="30dp"
-            android:paddingEnd="30dp"
-            android:paddingRight="30dp"
-            android:text="@string/write_tag_caption"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:typeface="monospace"
+            app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/gridLayout"
+            app:layout_constraintStart_toStartOf="@+id/gridLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+                android:id="@+id/write_tag_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:paddingLeft="30dp"
+                android:paddingEnd="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/write_tag_caption"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:typeface="monospace" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,16 +15,20 @@
             android:orientation="vertical"
             tools:context=".ui.write.text.WriteTextFragment">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tag_text_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/enter_text"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:text="@={viewModel.text}"
-                android:textColor="@android:color/white" />
+                android:ems="10">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:gravity="start|top"
+                    android:hint="@string/enter_text"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewModel.text}"
+                    />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </layout>

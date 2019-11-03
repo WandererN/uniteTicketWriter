@@ -19,8 +19,8 @@ class WifiNfcMessage(override var message: WifiRecord? = null) :
                 when (mess.authType) {
                     AuthTypes.NO_AUTH -> {
                     }
-                    AuthTypes.WEP, AuthTypes.WPA2_PSK -> it.writeString(mess.password)
-                    AuthTypes.WPA2_ENTERPRIZE -> {
+                    AuthTypes.WEP, AuthTypes.WPA2_PERSONAL -> it.writeString(mess.password)
+                    AuthTypes.WPA2_ENTERPRISE -> {
                         it.writeString(mess.userName)
                         it.writeString(mess.password)
                     }
@@ -38,8 +38,8 @@ class WifiNfcMessage(override var message: WifiRecord? = null) :
             auth?.let { a ->
                 val pass = when (a) {
                     AuthTypes.NO_AUTH -> ""
-                    AuthTypes.WEP, AuthTypes.WPA2_PSK -> it.readString()
-                    AuthTypes.WPA2_ENTERPRIZE -> {
+                    AuthTypes.WEP, AuthTypes.WPA2_PERSONAL -> it.readString()
+                    AuthTypes.WPA2_ENTERPRISE -> {
                         userName = it.readString()
                         it.readString()
                     }

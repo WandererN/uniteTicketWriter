@@ -12,73 +12,74 @@
                 type="com.jh.uniteticketwriter.ui.write.wifi.WriteWifiApViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             tools:context=".ui.write.wifi.WriteWifiApFragment">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wifi_ap_ssid_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical"
-                bind:layout_constraintEnd_toEndOf="parent"
-                bind:layout_constraintStart_toStartOf="parent"
-                bind:layout_constraintTop_toTopOf="parent">
+                android:hint="@string/ssid"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName">
 
-            <EditText
-                    android:id="@+id/wifi_ap_ssid_edit_text"
+            <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/ssid"
-                    android:text="@={viewModel.ssid}"
-                    android:inputType="text"
-                    android:importantForAutofill="no" />
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:text="@={viewModel.ssid}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-            <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                    android:id="@+id/wifi_ap_auth_type_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:entries="@array/wifi_auth_types"
+                    android:hint="@string/auth_type" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/wifi_ap_auth_type_caption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.1"
-                        android:text="@string/auth_type" />
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wifi_ap_user_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_name"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName">
 
-                <Spinner
-                        android:id="@+id/wifi_ap_auth_type_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:entries="@array/wifi_auth_types" />
-
-            </LinearLayout>
-
-            <EditText
-                    android:id="@+id/wifi_ap_user_name_edit_text"
+            <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/user_name"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
                     android:text="@={viewModel.userName}"
-                    android:visibility="@{viewModel.userNameVisibility==0 ? View.VISIBLE : View.GONE}"
-                    android:inputType="textPersonName"
-                    android:importantForAutofill="no" />
+                    android:visibility="@{viewModel.userNameVisibility ? View.VISIBLE : View.GONE}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wifi_ap_password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/password"
+                android:importantForAutofill="no"
+                android:inputType="textVisiblePassword">
 
-            <EditText
-                    android:id="@+id/wifi_ap_password_edit_text"
+            <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/password"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
                     android:text="@={viewModel.password}"
-                    android:inputType="textVisiblePassword"
-                    android:importantForAutofill="no" />
+                    android:visibility="@{viewModel.passwordVisibility ? View.VISIBLE : View.GONE}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

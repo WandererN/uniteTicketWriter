@@ -4,6 +4,7 @@ import android.content.Intent
 import android.nfc.NfcAdapter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jh.uniteticketwriter.Config
 import com.jh.uniteticketwriter.R
 import com.jh.uniteticketwriter.ui.read.WaitForTagLifecycleObserver
 
@@ -19,6 +20,7 @@ class MainFragmentActivity : AppCompatActivity() {
                 NfcAdapter.getDefaultAdapter(applicationContext)
             )
         )
+        Config.resources = resources
     }
 
     override fun onNewIntent(intent: Intent?) {

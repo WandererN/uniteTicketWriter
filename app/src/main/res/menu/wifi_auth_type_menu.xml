@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="No Auth" />
+    <item android:title="WEP" />
+    <item android:title="WPA" />
+    <item android:title="WPA2 Personal" />
+    <item android:title="WPA2 Enterprise" />
+</menu>

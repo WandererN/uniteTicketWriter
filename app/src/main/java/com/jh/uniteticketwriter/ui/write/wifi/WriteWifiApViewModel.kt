@@ -1,5 +1,6 @@
 package com.jh.uniteticketwriter.ui.write.wifi
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jh.uniteticketwriter.nfc.message.CustomNfcMessage
@@ -16,8 +17,7 @@ class WriteWifiApViewModel : ViewModel(), WriteViewModel {
     override fun getMessage(): CustomNfcMessage<*> {
         return WifiNfcMessage(
             WifiRecord(
-                AuthTypes.fromInt(authType.value ?: 0)
-                    ?: AuthTypes.NO_AUTH,
+                authType.value ?: AuthTypes.NO_AUTH,
                 ssid.value ?: "",
                 password.value ?: "",
                 userName.value ?: ""
@@ -26,13 +26,16 @@ class WriteWifiApViewModel : ViewModel(), WriteViewModel {
     }
 
     // TODO: Implement the ViewModel
-    var authType = MutableLiveData<Int>() //TODO make spinner data binding
+    var authType = MutableLiveData<AuthTypes>() //TODO make spinner data binding
     val ssid = MutableLiveData<String>()
     val password = MutableLiveData<String>()
+    val passwordVisibility = ObservableField<Boolean>()
     val userName = MutableLiveData<String>()
-    val userNameVisibility = MutableLiveData<Int>()
+    val userNameVisibility = ObservableField<Boolean>()
 
     init {
-        userNameVisibility.value = 1
+        userNameVisibility.set(false)
+        passwordVisibility.set(false)
+        authType.value = AuthTypes.NO_AUTH
     }
 }
