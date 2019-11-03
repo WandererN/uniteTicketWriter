@@ -43,8 +43,9 @@
                     android:id="@+id/wifi_ap_auth_type_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:editable="false"
-                    android:entries="@array/wifi_auth_types"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:inputType="textNoSuggestions"
                     android:hint="@string/auth_type" />
         </com.google.android.material.textfield.TextInputLayout>
 
