@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.write.applaunch.WriteAppLaunchFragment">
+        tools:context=".ui.write.applaunch.WriteAppLaunchFragment"
+        android:orientation="vertical">
+<com.google.android.material.textview.MaterialAutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
+</com.google.android.material.textview.MaterialAutoCompleteTextView>
+    <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/write_application_launch_information" />
 
-</FrameLayout>
+</LinearLayout>

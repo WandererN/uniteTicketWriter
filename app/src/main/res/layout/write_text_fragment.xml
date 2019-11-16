@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,8 +9,7 @@
                 type="com.jh.uniteticketwriter.ui.write.text.WriteTextViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -19,16 +19,14 @@
                 android:id="@+id/tag_text_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ems="10">
+              >
+
             <com.google.android.material.textfield.TextInputEditText
-                    android:gravity="start|top"
-                    android:hint="@string/enter_text"
-                    android:importantForAutofill="no"
-                    android:inputType="textMultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={viewModel.text}"
-                    />
+                    android:hint="@string/enter_text"
+                    android:importantForAutofill="no"
+                    android:text="@={viewModel.text}" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </layout>
